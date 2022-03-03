@@ -749,19 +749,19 @@ int main() {
 	while (start) {
 
 		cout << "---------------------------------------------------------------------" << endl;
-		cout << " 0  :  Stvaranje praznog stabla.                                 " << endl;
-		cout << " 1  :  Ucitavajte akcije putem glavnog ulaza.                    " << endl;
-		cout << " 2  :  Ucitavajte akcije putem dadoteke.                         " << endl;
-		cout << " 3  :  Pretrazi odredjenu akciju.                                " << endl;
-		cout << " 4  :  Umetni novu akciju.                                       " << endl;
-		cout << " 5  :  Brisanje proizvoljne akcije po prioritetu.                " << endl;
-		cout << " 6  :  Brisanje akcije najviseg prioriteta.                      " << endl;
-		cout << " 7  :  Ispisivanje 2-3-4 stabla.                                 " << endl;
-		cout << " 8  :  Ispisivanje crveno-crnog stabla.                          " << endl;
-		cout << " 9  :  Izmena prioriteta akcije.                                 " << endl;
-		cout << " 10  : Pronalazanje ukupnog broja akcija sa zadatim prioritetom. " << endl;
-		cout << " 11  : Brisanje stabla.                                          " << endl;
-		cout << " 12  : Kraj programa.                                            " << endl;
+		cout << " 0  :  Create an empty Tree.                                     " << endl;
+		cout << " 1  :  Load action from console.                                 " << endl;
+		cout << " 2  :  Load action from file.                                    " << endl;
+		cout << " 3  :  Search action.                                            " << endl;
+		cout << " 4  :  Insert action.                                            " << endl;
+		cout << " 5  :  Delete action based on priority.                          " << endl;
+		cout << " 6  :  Delete highest priority action.                           " << endl;
+		cout << " 7  :  Print 2-3-4 Tree.                                         " << endl;
+		cout << " 8  :  Print Red-Black Tree.                                     " << endl;
+		cout << " 9  :  Change priority of action.                                " << endl;
+		cout << " 10  : Search all actions with given priority.                   " << endl;
+		cout << " 11  : Delete Tree.                                              " << endl;
+		cout << " 12  : End of program.                                           " << endl;
 		cout << "---------------------------------------------------------------------" << endl;
 
 		int choice;
@@ -782,7 +782,7 @@ int main() {
 		case 1:
 
 			bst.deleteTree();
-			cout << "Ucitavajte akciju i njen priorite dok ne unesete rec STOP : " << endl;
+			cout << "Load action and its priority until you input word STOP : " << endl;
 			cin >> s;
 
 			while (s.compare("STOP") != 0) {
@@ -797,11 +797,11 @@ int main() {
 		case 2:
 
 			bst.deleteTree();
-			cout << "Unesite ime dadoteke : "; cin >> s;
+			cout << "Insert file name : "; cin >> s;
 
 			dat.open(s);
 			if (!dat.is_open())
-				cout << "Greska pri otvaranju fajla. " << endl;
+				cout << "Error loading a file " << endl;
 			else
 			{
 				while (!dat.eof()) {
@@ -815,22 +815,22 @@ int main() {
 
 		case 3:
 
-			cout << "Unesite akciju za pretrazivanje : "; cin >> s;
-			cout << "Unesite njen prioritet : "; cin >> pr;
-			if (bst.searchTree(pr, s) != nullptr)cout << " Trazena akcija postoji. " << endl;
-			else cout << "Trazena akcija ne postoji. " << endl;
+			cout << "Insert action to search : "; cin >> s;
+			cout << "Insert its priority : "; cin >> pr;
+			if (bst.searchTree(pr, s) != nullptr)cout << " The action exists." << endl;
+			else cout << "The action does not exist " << endl;
 			break;
 
 		case 4:
 
-			cout << " Unesite akciju za umetanje: "; cin >> s;
-			cout << " Unesite prioritet akcije za umetanje: "; cin >> pr;
+			cout << "Insert action which needs to be inserted "; cin >> s;
+			cout << " Insert its priority: "; cin >> pr;
 			bst.insert(pr, s);
 			break;
 
 		case 5:
 
-			cout << "Unsite prioritet akcije koju zelite da obrisete : "; cin >> pr;
+			cout << "Insert priority of action which you want to delete : "; cin >> pr;
 			bst.deleteNodePr(pr);
 			break;
 
@@ -860,21 +860,21 @@ int main() {
 
 		case 9:
 
-			cout << " Unesite akciju kojoj zelite da promenite prioritet : "; cin >> s;
-			cout << " Unesite prioritet koji zelite da joj postavite :  "; cin >> pr;
+			cout << " Insert actioon which you want to change : "; cin >> s;
+			cout << " Insert new priority you want to adress to it :  "; cin >> pr;
 			bst.changePriority(bst.searchTreeString(s), pr);
 			break;
 
 		case 10:
 
-			cout << "Unesite zeljeni prioritet : "; cin >> pr;
-			cout << "Broj akcija sa zadatim prioritetom je -> " << bst.numberOfPriorities(pr) << endl;
+			cout << "Insert priority : "; cin >> pr;
+			cout << "Number of actions with that priority -> " << bst.numberOfPriorities(pr) << endl;
 			break;
 
 		case 11:
 
 			bst.deleteTree();
-			cout << " Uspesno obrisano stablo." << endl;
+			cout << " Tree is successfully deleted. " << endl;
 			break;
 
 		case 12:
@@ -887,30 +887,9 @@ int main() {
 	}
 
 
-	/*
-		RBTree bst;
-		bst.insert(8,"una");
-		bst.insert(18,"mina");
-		bst.insert(8,"ana");
-		bst.insert(15,"Jelena");
-		bst.changePriority(bst.searchTree(8, "una"), 10);
-
-		//bst.prettyPrint();
-		cout << bst;
-		cout << bst.numberOfPriorities(8);
-		*/
+	
 	return 0;
 }
 
 
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
